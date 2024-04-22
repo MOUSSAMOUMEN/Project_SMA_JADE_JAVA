@@ -96,15 +96,15 @@ public class AcheteurAgent extends GuiAgent {
                                     }
                                 }
 
-                                ACLMessage aclMessageAccept=meilleurOffre.createReply();
-                                aclMessage.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+                                ACLMessage aclMessageAccept=meilleurOffre.createReply(ACLMessage.ACCEPT_PROPOSAL);
+                                aclMessageAccept.setContent("OK pour " + meilleurOffre.getContent());
                                 send(aclMessageAccept);
-
+                                counter = 0;
                             }
                             break;
                         case ACLMessage.AGREE:
 
-                            ACLMessage aclMessage3=new ACLMessage(ACLMessage.CONFIRM);
+                            ACLMessage aclMessage3=new ACLMessage(ACLMessage.INFORM);
                             aclMessage3.addReceiver(new AID("consumer",AID.ISLOCALNAME));
                             aclMessage3.setContent(aclMessage.getContent());
                             send(aclMessage3);
@@ -115,16 +115,7 @@ public class AcheteurAgent extends GuiAgent {
 
                         default:
                             break;}
-
-                    String livre=aclMessage.getContent();
                     gui.logMessage(aclMessage);
-                    ACLMessage reply=aclMessage.createReply();
-                    reply.setContent("ok pour "+aclMessage.getContent());
-                    send(reply);
-                    ACLMessage aclMessage1=new ACLMessage(ACLMessage.CFP);
-                    aclMessage1.setContent(livre);
-                    aclMessage1.addReceiver(new AID("VENDEUR",AID.ISLOCALNAME));
-                    send(aclMessage1);
                  }else block();}});}
     @Override
     protected void onGuiEvent(GuiEvent guiEvent) {}}

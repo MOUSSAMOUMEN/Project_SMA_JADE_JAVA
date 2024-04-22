@@ -29,7 +29,7 @@ public class ConsumerAgent extends GuiAgent {
                 if (aclMessage != null) {
                     switch (aclMessage.getPerformative()){
 
-                        case ACLMessage.CONFIRM :
+                        case ACLMessage.INFORM:
                             gui.logMessage(aclMessage);
                             break;
 
@@ -42,7 +42,7 @@ public class ConsumerAgent extends GuiAgent {
     public void onGuiEvent(GuiEvent params) {
       if(params.getType()==1){
           String livre =  params.getParameter(0).toString();
-          ACLMessage aclMessage=new ACLMessage(ACLMessage.REFUSE);
+          ACLMessage aclMessage=new ACLMessage(ACLMessage.REQUEST);
           aclMessage.setContent(livre);
           aclMessage.addReceiver(new AID("ACHETEUR",AID.ISLOCALNAME)); // ajouter le receiver de message
           send(aclMessage);}}}

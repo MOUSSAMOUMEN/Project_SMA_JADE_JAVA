@@ -98,5 +98,5 @@ public class VendeurGui extends Application {
 
         Platform.runLater(()->{
             observableList.add(aclMessage.getContent()
-                    +", " +aclMessage.getSender());
+                    +", " +aclMessage.getSender().getName());
         });}}

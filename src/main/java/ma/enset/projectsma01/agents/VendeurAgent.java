@@ -68,10 +68,10 @@ public class VendeurAgent extends GuiAgent {
                         case ACLMessage.ACCEPT_PROPOSAL :
                             ACLMessage aclMessage1=aclMessage.createReply();
                             aclMessage1.setPerformative(ACLMessage.AGREE);
+                            aclMessage1.setContent(aclMessage.getContent());
                             send(aclMessage1);
                             break;
-                            default:
-                            break;}
+                        }
                 }else block();}});}
 
     @Override
